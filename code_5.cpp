@@ -107,3 +107,49 @@ private:
         if(left==0)return v[right];
         return v[right]-v[left-1];
     }
+5.6 
+//fancy number (https://www.geeksforgeeks.org/check-if-a-given-mobile-number-is-fancy/)
+#include <bits/stdc++.h>
+using namespace std;
+ 
+bool cond1(string s)
+{
+    for (int i = 0; i < s.size() - 2; i++) {
+        if (s[i] == s[i + 1] && s[i + 1] == s[i + 2])
+            return true;
+    }
+    return false;
+}
+bool cond2(string s)
+{
+    for (int i = 0; i < s.size() - 2; i++) {
+        if ((s[i] < s[i + 1] && s[i + 1] < s[i + 2]) ||
+            (s[i] > s[i + 1] && s[i + 1] > s[i + 2]))
+            return true;
+    }
+    return false;
+}
+ 
+bool cond3(string s)
+{
+    int a[10];
+    memset(a, 0, sizeof(a));
+ 
+    for (int i = 0; i < s.size(); i++)
+        a[s[i] - '0']++;
+    
+    for (int i = 0; i < 9; i++)
+        if (a[i] >= 4)
+            return true;
+     
+    return false;
+}
+ 
+bool isFancy(string s)
+{
+    if (cond1(s) || cond2(s) || cond3(s))
+        return true;
+    else
+        return false;
+}
+ 
